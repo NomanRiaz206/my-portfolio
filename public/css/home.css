@@ -1,0 +1,60 @@
+  body {
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+            background: #f8f9fa;
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 50px;
+            height: 100vh;
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            transition: 0.3s;
+            border-radius: 30px;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.1);
+        }
+
+        /* PROJECT CARDS */
+        .project-card {
+            transition: 0.4s;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* SKILLS */
+        .skill-bar {
+            height: 8px;
+            border-radius: 10px;
+            background: #ddd;
+        }
+
+        .skill-progress {
+            height: 8px;
+            border-radius: 10px;
+            background: #0d6efd;
+        }
+
+        /* NAV */
+        .navbar {
+            backdrop-filter: blur(10px);
+        }

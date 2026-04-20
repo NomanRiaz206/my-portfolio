@@ -1,5 +1,6 @@
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow">
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow" >
     <div class="container">
         <a class="navbar-brand fw-bold" href="#">Nauman.dev</a>
 

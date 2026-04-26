@@ -102,8 +102,8 @@ function About() {
         <div className="flex w-full flex-1 justify-center">
           <div className="hero-image h-[500px] w-[380px] overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#111] shadow-[0_20px_60px_rgba(0,0,0,0.6)] max-sm:h-[420px] max-sm:w-full max-sm:max-w-[380px]">
             <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-              alt="Team working"
+              src="/images/protfolio-images.jpeg"
+              alt="profile image"
               className="h-full w-full object-cover"
             />
           </div>

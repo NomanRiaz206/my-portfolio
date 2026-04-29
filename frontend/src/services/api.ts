@@ -16,3 +16,18 @@ export async function getProjects(): Promise<ProjectsApiResponse> {
 
   return response.json();
 }
+
+export async function getBlogs(): Promise<ProjectsApiResponse> {
+  const response = await fetch(`${BASE_URL}/blogs`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch blogs");
+  }
+
+  return response.json();
+}

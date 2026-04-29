@@ -1,18 +1,18 @@
 :root {
-    --bg: #090909;
-    --panel: #121212;
+    --bg: #1e293b;
+    --panel: #1e293b;
     --soft: #1b1b1b;
     --text: #f4f1ea;
     --muted: #aea79d;
-    --line: rgba(255,255,255,0.08);
+    --line: rgba(255, 255, 255, 0.08);
     --accent: #d7c3a2;
     --max: 1280px;
     --radius: 24px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -21,13 +21,18 @@ html {
 }
 
 body.site-body {
+    margin: 0;
+    min-height: 100vh;
     background: var(--bg);
     color: var(--text);
     font-family: Inter, Arial, sans-serif;
     line-height: 1.6;
 }
 
-img {
+img,
+svg,
+video,
+canvas {
     max-width: 100%;
     display: block;
 }
@@ -37,33 +42,50 @@ a {
     text-decoration: none;
 }
 
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Alpine */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Layout */
 .container {
     width: min(100% - 40px, var(--max));
-    margin: 0 auto;
+    margin-inline: auto;
 }
 
 .section-space {
     padding: 110px 0;
 }
 
+/* Header / Navbar */
 .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
+    border-bottom: 1px solid var(--line);
+    background: rgba(30, 41, 59, 0.88);
     backdrop-filter: blur(14px);
 }
-.nav-wrap {
 
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
+
+
+
 
 .main-nav a,
 .nav-cta,
 .text-link {
-    transition: 0.3s ease;
+    transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .main-nav a:hover,
@@ -71,12 +93,13 @@ a {
     color: var(--accent);
 }
 
+/* Buttons */
 .nav-cta,
 .btn {
     display: inline-flex;
+    min-height: 50px;
     align-items: center;
     justify-content: center;
-    min-height: 50px;
     padding: 0 24px;
     border-radius: 999px;
     border: 1px solid var(--line);
@@ -87,38 +110,40 @@ a {
     background: var(--text);
     color: #111;
 }
-}
 
 .btn-outline {
     background: transparent;
     color: var(--text);
 }
 
+/* Hero */
 .hero-section {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 80px 0;
 }
-.hero-grid{
+
+.hero-grid {
+    display: grid;
     gap: 48px;
     align-items: center;
 }
 
 .eyebrow {
+    margin-bottom: 18px;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.14em;
     font-size: 0.82rem;
-    margin-bottom: 18px;
 }
 
 .hero-copy h1,
 .inner-hero h1 {
+    margin-bottom: 24px;
     font-size: clamp(3.6rem, 9vw, 8rem);
     line-height: 0.95;
     letter-spacing: -0.05em;
-    margin-bottom: 24px;
 }
 
 .hero-text,
@@ -144,15 +169,16 @@ a {
     justify-content: flex-end;
 }
 
+/* Cards */
 .hero-card,
 .cta-box,
 .service-card,
 .award-item,
 .testimonial-card,
 .timeline-item {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
 }
 
 .hero-card {
@@ -167,10 +193,12 @@ a {
         radial-gradient(circle at top right, rgba(215,195,162,0.15), transparent 30%),
         linear-gradient(180deg, #181818, #0f0f0f);
 }
+
 .metrics-strip {
     min-height: 540px;
 }
 
+/* Portfolio */
 .portfolio-card {
     position: relative;
     min-height: 380px;
@@ -199,13 +227,14 @@ a {
 .portfolio-overlay span,
 .footer-label {
     display: inline-block;
-    color: var(--accent);
     margin-bottom: 10px;
+    color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-size: 0.78rem;
 }
 
+/* Inner pages */
 .inner-hero {
     padding: 120px 0 80px;
 }
@@ -223,6 +252,7 @@ a {
     margin-top: 26px;
 }
 
+/* Footer */
 .site-footer {
     padding: 80px 0 30px;
     border-top: 1px solid var(--line);
@@ -240,6 +270,8 @@ a {
     border-top: 1px solid var(--line);
     color: var(--muted);
 }
+
+/* Responsive */
 @media (max-width: 1100px) {
     .metrics-grid,
     .testimonials-grid {
@@ -275,11 +307,7 @@ a {
     .section-head {
         flex-direction: column;
     }
-
-    .nav-wrap {
-        min-height: 74px;
-    }
-
+    
     .hero-card {
         min-height: 340px;
     }

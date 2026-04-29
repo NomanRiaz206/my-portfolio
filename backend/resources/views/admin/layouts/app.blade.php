@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    @include('partials.head')
+    @include('admin.partials.head')
     @stack('styles')
 </head>
 
@@ -14,13 +14,14 @@
 
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    @include('partials.navbar')
+    @include('admin.partials.navbar')
 
-    <main id="smooth-content">
+    <main id="smooth-content" class="pt-[72px]">
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @include('admin.partials.footer')
+
 @stack('scripts')
 </body>
 

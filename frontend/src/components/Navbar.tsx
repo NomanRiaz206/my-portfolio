@@ -33,7 +33,7 @@ function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 24);
 
-      const sections = ["about", "projects", "skills", "experience", "contact"];
+      const sections = ["about", "projects", "skills", "experience", "blogs", "contact"];
       let current = active;
 
       for (const id of sections) {
@@ -61,6 +61,7 @@ function Navbar() {
     { label: "Projects", href: "#projects", id: "projects" },
     { label: "Skills", href: "#skills", id: "skills" },
     { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Blogs", href: "#blogs", id: "blogs" },
     { label: "Contact", href: "#contact", id: "contact" },
   ];
 

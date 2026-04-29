@@ -10,34 +10,24 @@ function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await getProjects();
-        setProjects(res.data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
+    getProjects()
+      .then((res) => setProjects(res.data))
+      .catch((err) => setError(err instanceof Error ? err.message : "Something went wrong"))
+      .finally(() => setLoading(false));
   }, []);
 
   useLayoutEffect(() => {
     if (!projects.length) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".project-card", {
-        y: 120,
+      gsap.from(".projects-heading", {
+        y: 60,
         opacity: 0,
-        rotateX: 20,
         duration: 1,
-        stagger: 0.2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -45,15 +35,16 @@ function Projects() {
         },
       });
 
-      gsap.from(".project-card img", {
-        scale: 1.3,
+      gsap.from(".project-card", {
+        y: 100,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power2.out",
+        scale: 0.94,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 75%",
         },
       });
     }, sectionRef);
@@ -63,32 +54,29 @@ function Projects() {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
-
     const rect = card.getBoundingClientRect();
+
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
+    const rotateX = ((y - rect.height / 2) / rect.height) * -6;
+    const rotateY = ((x - rect.width / 2) / rect.width) * 6;
 
     gsap.to(card, {
       rotateX,
       rotateY,
-      scale: 1.05,
-      duration: 0.4,
+      scale: 1.015,
+      duration: 0.35,
       ease: "power2.out",
     });
 
     const image = card.querySelector("img");
+
     if (image) {
       gsap.to(image, {
-        x: (x - centerX) * 0.05,
-        y: (y - centerY) * 0.05,
-        scale: 1.1,
-        duration: 0.4,
+        scale: 1.04,
+        duration: 0.35,
+        ease: "power2.out",
       });
     }
   };
@@ -105,36 +93,28 @@ function Projects() {
     });
 
     const image = card.querySelector("img");
+
     if (image) {
       gsap.to(image, {
-        x: 0,
-        y: 0,
         scale: 1,
         duration: 0.6,
+        ease: "power3.out",
       });
     }
   };
 
   if (loading) {
     return (
-      <section
-        ref={sectionRef}
-        id="projects"
-        className="flex min-h-screen flex-col gap-[50px] bg-[#0a0a0a] px-6 py-[120px] text-white [perspective:1000px] md:px-10 lg:flex-row xl:px-[120px]"
-      >
-        <p>Loading projects...</p>
+      <section className="min-h-screen bg-[#050505] px-6 py-[120px] text-white md:px-10 xl:px-[120px]">
+        Loading projects...
       </section>
     );
   }
 
   if (error) {
     return (
-      <section
-        ref={sectionRef}
-        id="projects"
-        className="flex min-h-screen flex-col gap-[50px] bg-[#0a0a0a] px-6 py-[120px] text-white [perspective:1000px] md:px-10 lg:flex-row xl:px-[120px]"
-      >
-        <p>{error}</p>
+      <section className="min-h-screen bg-[#050505] px-6 py-[120px] text-red-400 md:px-10 xl:px-[120px]">
+        {error}
       </section>
     );
   }
@@ -143,24 +123,75 @@ function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="flex min-h-screen flex-col gap-[50px] bg-[#0a0a0a] px-6 py-[120px] text-white [perspective:1000px] md:px-10 lg:flex-row xl:px-[120px]"
+      className="relative min-h-screen overflow-hidden bg-[#050505] px-6 py-[120px] text-white [perspective:1200px] md:px-10 xl:px-[120px]"
     >
-      {projects.map((project) => (
-        <div
-          key={project.id}
-          className="project-card w-[320px] cursor-pointer overflow-hidden rounded-[16px] bg-[#111] p-5 [transform-style:preserve-3d] [will-change:transform]"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="overflow-hidden rounded-[12px]">
-          <img src={project.thumbnail} alt={project.title} />
-          </div>
-          <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
-          <p className="mt-2 text-sm text-gray-400">
-  {project.short_description}
-</p>
-        </div>
-      ))}
+      <div className="pointer-events-none absolute right-0 top-0 h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[140px]" />
+      <div className="pointer-events-none absolute left-0 bottom-0 h-[420px] w-[420px] rounded-full bg-indigo-500/10 blur-[140px]" />
+
+      <div className="projects-heading relative z-10 mb-20 max-w-3xl">
+        <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl">
+          Featured Projects
+        </h2>
+
+        <p className="mt-6 max-w-2xl text-xl leading-8 text-gray-400">
+          From AI agents that automate complex workflows to full-stack platforms
+          that scale. Here's what I've been building.
+        </p>
+      </div>
+
+      <div className="relative z-10 space-y-10">
+        {projects.map((project) => (
+          <article
+            key={project.id}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="project-card group mx-auto grid max-w-6xl cursor-pointer grid-cols-1 items-center gap-10 overflow-hidden rounded-[36px] border border-white/10 bg-[#111]/95 p-8 shadow-2xl shadow-black/40 [transform-style:preserve-3d] [will-change:transform] lg:grid-cols-[0.9fr_1.1fr] lg:p-12"
+          >
+            <div>
+              <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                {project.title}
+              </h3>
+
+              <p className="mt-6 max-w-md text-lg leading-8 text-gray-400">
+                {project.short_description}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {project.technologies?.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-gray-200"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {project.live_url && (
+                <a
+                  href={project.live_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-9 inline-flex items-center gap-2 text-lg font-medium text-indigo-400 transition hover:text-indigo-300"
+                >
+                  View Live Project
+                  <span className="transition group-hover:translate-x-1 group-hover:-translate-y-1">
+                    ↗
+                  </span>
+                </a>
+              )}
+            </div>
+
+            <div className="overflow-hidden rounded-[26px] border border-white/10 bg-black/40">
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="h-[300px] w-full object-cover md:h-[360px]"
+              />
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

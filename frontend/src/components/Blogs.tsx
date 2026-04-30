@@ -154,22 +154,23 @@ function Blogs() {
     <section
     id="blogs"
       ref={sectionRef}
-      className="min-h-screen bg-[#0a0a0a] px-6 py-[120px] text-white [perspective:1000px] md:px-10 xl:px-[120px]"
+      className="min-h-screen bg-black px-6 py-[120px] text-white [perspective:1000px] md:px-10 xl:px-[120px]"
     >
-      <div className="blog-heading mb-14 max-w-3xl">
-        <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#d7c3a2]">
-          Latest Articles
-        </p>
+         <div className="blog-heading relative z-10 mx-auto mb-20 max-w-3xl text-center">
+  <p className="mb-7 text-sm font-black uppercase tracking-[0.35em] text-[#7c7cff]">
+     Latest Articles
+  </p>
 
-        <h2 className="text-4xl font-bold leading-tight md:text-6xl">
-          Thoughts, stories, and development notes.
-        </h2>
+  <h2 className="text-5xl font-black leading-none tracking-[-0.04em] text-white md:text-7xl">
+   Thoughts, stories, and development notes.
+  </h2>
 
-        <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400">
-          Explore practical insights about Laravel, frontend development,
-          architecture, and modern web experiences.
-        </p>
-      </div>
+  <p className="mt-5 max-w-2xl text-base leading-7 text-gray-400">
+    Explore practical insights about Laravel, frontend development, architecture, and modern web experiences.
+  </p>
+</div>
+
+   
 
       <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
         {blogs.map((blog) => (

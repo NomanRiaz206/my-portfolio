@@ -36,7 +36,7 @@ function Projects() {
       });
 
       gsap.from(".project-card", {
-        y: 100,
+        y:100,
         opacity: 0,
         scale: 0.94,
         duration: 1,
@@ -128,16 +128,15 @@ function Projects() {
       <div className="pointer-events-none absolute right-0 top-0 h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[140px]" />
       <div className="pointer-events-none absolute left-0 bottom-0 h-[420px] w-[420px] rounded-full bg-indigo-500/10 blur-[140px]" />
 
-      <div className="projects-heading relative z-10 mb-20 max-w-3xl">
-        <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl">
-          Featured Projects
-        </h2>
+      <div className="projects-heading relative z-10 mx-auto mb-20 max-w-3xl text-center">
+  <p className="mb-7 text-sm font-black uppercase tracking-[0.35em] text-[#7c7cff]">
+    Portfolio
+  </p>
 
-        <p className="mt-6 max-w-2xl text-xl leading-8 text-gray-400">
-          From AI agents that automate complex workflows to full-stack platforms
-          that scale. Here's what I've been building.
-        </p>
-      </div>
+  <h2 className="text-5xl font-black leading-none tracking-[-0.04em] text-white md:text-7xl">
+    Featured Projects
+  </h2>
+</div>
 
       <div className="relative z-10 space-y-10">
         {projects.map((project) => (
@@ -145,10 +144,9 @@ function Projects() {
             key={project.id}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="project-card group mx-auto grid max-w-6xl cursor-pointer grid-cols-1 items-center gap-10 overflow-hidden rounded-[36px] border border-white/10 bg-[#111]/95 p-8 shadow-2xl shadow-black/40 [transform-style:preserve-3d] [will-change:transform] lg:grid-cols-[0.9fr_1.1fr] lg:p-12"
-          >
+           className="project-card group mx-auto grid max-w-6xl cursor-pointer grid-cols-1 items-center gap-10 overflow-hidden rounded-[36px] border border-white/10 bg-[#111]/95 p-8 shadow-2xl shadow-black/40 transition-colors duration-500 hover:border-[#7c7cff]/60 hover:bg-[#111127] hover:shadow-[#7c7cff]/10 [transform-style:preserve-3d] [will-change:transform] lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
             <div>
-              <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+              <h3 className="text-3xl font-black tracking-tight text-white transition-colors duration-500 group-hover:text-[#7c7cff] md:text-4xl">
                 {project.title}
               </h3>
 
@@ -160,7 +158,7 @@ function Projects() {
                 {project.technologies?.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-gray-200"
+                    className="rounded-full border border-white/10 bg-white/5 px-5 py-3 uppercase text-[0.95rem] font-medium text-gray-200"
                   >
                     {tech}
                   </span>

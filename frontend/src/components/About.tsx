@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 function About() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -84,19 +85,40 @@ function About() {
           </p>
 
           <div className="mt-[30px] flex flex-wrap gap-[15px]">
-            <button className="rounded-[10px] border-none bg-white px-5 py-3 font-semibold text-black transition-all duration-300 hover:translate-y-[-1px]">
+            <a href="#projects">
+            <button className="rounded-[10px] border-none bg-white px-5 py-3 font-semibold text-black transition-all duration-300 hover:translate-y-[-1px]hover:shadow-lg hover:shadow-white/30 cursor-pointer">
               View My Work
             </button>
+            </a>
 
-            <button className="rounded-[10px] border border-white/20 bg-transparent px-5 py-3 text-white transition-all duration-300 hover:border-white/35">
+            <a href="#contact">
+            <button className="rounded-[10px] border border-white/20 bg-transparent px-5 py-3 text-white transition-all duration-300 hover:border-white/35 hover:bg-white/5 hover:translate-y-[-1px] cursor-pointer">
               Get in Touch
             </button>
+            </a>
           </div>
 
-          <div className="mt-[30px] flex gap-5 text-[14px] text-[#888]">
-            <span>⚫ GitHub</span>
-            <span>LinkedIn</span>
-          </div>
+        <div className="mt-[30px] flex gap-5 text-[14px] text-[#888]">
+  
+  <a
+    href="https://github.com/NomanRiaz206"
+    target="_blank"
+    className="flex items-center gap-2 hover:text-white transition"
+  >
+    <FaGithub size={30} />
+    
+  </a>
+
+  <a
+    href="https://linkedin.com/in/noman-riaz-198158309"
+    target="_blank"
+    className="flex items-center gap-2 hover:text-white transition"
+  >
+    <FaLinkedin size={30}/>
+   
+  </a>
+
+</div>
         </div>
 
         <div className="flex w-full flex-1 justify-center">

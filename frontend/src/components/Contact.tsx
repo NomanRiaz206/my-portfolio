@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import {FaEnvelope, FaGithub, FaLinkedin} from "react-icons/fa";
 
 function Contact() {
   const contactRef = useRef<HTMLElement>(null);
@@ -74,40 +75,48 @@ function Contact() {
         <div className="contact-actions mb-10 flex flex-wrap justify-center gap-4">
           <a
             href="mailto:nomanriaz.dev@gmail.com"
-            className="rounded-[12px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_100%)] px-6 py-[14px] font-semibold text-white no-underline transition-all duration-300 hover:translate-y-[-1px]"
+            className=" flex items-center gap-2 rounded-[12px] bg-[linear-gradient(135deg,#7c3aed_0%,#4f46e5_100%)] px-6 py-[14px] font-semibold text-white no-underline transition-all duration-300 hover:translate-y-[-1px]"
           >
+          <FaEnvelope size={18} />
             Send Email
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/in/noman-riaz-198158309"
             target="_blank"
             rel="noreferrer"
-            className="rounded-[12px] border border-white/[0.12] bg-transparent px-6 py-[14px] text-white no-underline transition-all duration-300 hover:border-white/[0.22]"
+            className=" flex items-center gap-2 rounded-[12px] border border-white/[0.12] bg-transparent px-6 py-[14px] text-white no-underline transition-all duration-300 hover:border-white/[0.22]"
           >
+            <FaLinkedin size={18} />
             LinkedIn
           </a>
         </div>
 
-        <div className="contact-icons flex justify-center gap-4">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="flex h-[44px] w-[44px] items-center justify-center rounded-[12px] border border-white/[0.1] text-[#aaa] no-underline transition-all duration-300 hover:border-white/[0.18] hover:text-white"
-          >
-            🐙
-          </a>
+    <div className="flex gap-4 justify-center">
+      <a
+        href="https://github.com/NomanRiaz206"
+        target="_blank"
+        className="w-12 h-12 flex items-center justify-center 
+                   rounded-xl bg-white/10 backdrop-blur-md 
+                   border border-white/20 
+                   hover:bg-white/20 transition"
+      >
+        <FaGithub className="text-white text-xl" />
+      </a>
 
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noreferrer"
-            className="flex h-[44px] w-[44px] items-center justify-center rounded-[12px] border border-white/[0.1] text-[#aaa] no-underline transition-all duration-300 hover:border-white/[0.18] hover:text-white"
-          >
-            in
-          </a>
-        </div>
+      
+      <a
+        href="https://linkedin.com/in/noman-riaz-198158309"
+        target="_blank"
+        className="w-12 h-12 flex items-center justify-center 
+                   rounded-xl bg-white/10 backdrop-blur-md 
+                   border border-white/20 
+                   hover:bg-white/20 transition"
+      >
+        <FaLinkedin className="text-white text-xl" />
+      </a>
+
+    </div>
       </div>
     </section>
   );
